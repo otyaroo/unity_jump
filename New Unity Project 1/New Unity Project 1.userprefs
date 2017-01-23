@@ -1,8 +1,8 @@
-﻿<Properties StartupItem="New Unity Project 1.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\kirby.cs">
     <Files>
-      <File FileName="Assets\scripts\kirby.cs" Line="11306" Column="1" />
+      <File FileName="Assets\scripts\kirby.cs" Line="17" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
