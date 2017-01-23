@@ -11,8 +11,8 @@ public class kirby : MonoBehaviour {
 //    変数宣言
 // ====================================================================
 
-    Rigidbody2D rigid2D;
-    float jumpForce = 400.0f;
+    Rigidbody2D rigid2D;                       // このスクリプトを充てるゲームオブジェクトの Rigidbody2Dコンポーネントを操作する。
+    float jumpForce = 40.0f;
     float walkForce = 15.0f;
 
 // =====================================================================
@@ -32,18 +32,24 @@ public class kirby : MonoBehaviour {
         float absVelocityX = Mathf.Abs(this.rigid2D.velocity.x);
         float absVelocityY = Mathf.Abs(this.rigid2D.velocity.y);
 
+        // ------------------------------------------------------------------
+        // ジャンプの条件式
+        // 
+        // 設置状態でのみジャンプ可能としたい
+        // ------------------------------------------------------------------
+
         if (Input.GetKey(KeyCode.X))
             this.rigid2D.AddForce(transform.up * this.jumpForce);
         if (Input.GetKey(KeyCode.Z))
             this.rigid2D.AddForce(transform.up * this.jumpForce * 0.8f);
 
 
-        // ==================================================================
+        // ------------------------------------------------------------------
         // 左右移動の条件式
         //
         // 絶対値で速度オーバーしない限り、
         // 下の減速式には入らないはず。
-        // ==================================================================
+        // ------------------------------------------------------------------
         if (absVelocityX < 5.0f)
         {
             if (Input.GetKey(KeyCode.RightArrow))
