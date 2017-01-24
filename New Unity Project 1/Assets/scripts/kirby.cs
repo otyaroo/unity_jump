@@ -12,17 +12,20 @@ public class kirby : MonoBehaviour {
 // ====================================================================
 
     Rigidbody2D rigid2D;                       // このスクリプトを充てるゲームオブジェクトの Rigidbody2Dコンポーネントを操作する。
-    float jumpForce = 40.0f;
+    GameObject playerGroundCheck;
+    Collider2D col2D;
+    float jumpForce = 500.0f;
     float walkForce = 15.0f;
 
 // =====================================================================
 	// Use this for initialization
 // =====================================================================
 	void Start () {
-       
-        // このスクリプトを適用する ゲームオブジェクトのRigitbody2Dの状態を操作する。
 
+        // このスクリプトを適用する ゲームオブジェクトのRigitbody2Dの状態を操作する。
+        this.playerGroundCheck = GameObject.Find("playerGroundCheck");
         this.rigid2D = GetComponent<Rigidbody2D>();
+        this.col2D = gameObject.GetComponentInChildren<BoxCollider2D>();
 	}
 // =====================================================================
 	// Update is called once per frame
@@ -31,17 +34,7 @@ public class kirby : MonoBehaviour {
 
         float absVelocityX = Mathf.Abs(this.rigid2D.velocity.x);
         float absVelocityY = Mathf.Abs(this.rigid2D.velocity.y);
-
-        // ------------------------------------------------------------------
-        // ジャンプの条件式
-        // 
-        // 設置状態でのみジャンプ可能としたい
-        // ------------------------------------------------------------------
-
-        if (Input.GetKey(KeyCode.X))
-            this.rigid2D.AddForce(transform.up * this.jumpForce);
-        if (Input.GetKey(KeyCode.Z))
-            this.rigid2D.AddForce(transform.up * this.jumpForce * 0.8f);
+        
 
 
         // ------------------------------------------------------------------
@@ -64,14 +57,24 @@ public class kirby : MonoBehaviour {
         // 右方向にスピードオーバーしていたら
         else if (this.rigid2D.velocity.x > 0)
             this.rigid2D.AddForce(transform.right * -1.0f);
-            
-
-
-
-
-        Debug.Log(rigid2D.velocity);
 
 	}
+    // ------------------------------------------------------------------
+    // ジャンプの条件式
+    // 
+    // 壁にあたっている状態でもジャンプできないようになった。
+    // Triggerモードになっているのが GroundCheckだけだからかも。
+    // あとは、キャラクタのコライダーよりも GroundCheckの判定が小さいのも
+    // ------------------------------------------------------------------
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        Debug.Log("床に触れてます");
+        if (Input.GetKey(KeyCode.X))
+            this.rigid2D.AddForce(transform.up * this.jumpForce);
+        if (Input.GetKey(KeyCode.Z))
+            this.rigid2D.AddForce(transform.up * this.jumpForce * 0.8f);
+    }
 }
 
 
