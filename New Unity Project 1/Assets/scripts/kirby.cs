@@ -58,6 +58,7 @@ public class kirby : MonoBehaviour {
         else if (this.rigid2D.velocity.x > 0)
             this.rigid2D.AddForce(transform.right * -1.0f);
 
+        
 	}
     // ------------------------------------------------------------------
     // ジャンプの条件式
@@ -75,6 +76,7 @@ public class kirby : MonoBehaviour {
         if (Input.GetKey(KeyCode.Z))
             this.rigid2D.AddForce(transform.up * this.jumpForce * 0.8f);
     }
+   
 }
 
 
