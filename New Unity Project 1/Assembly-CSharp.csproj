@@ -49,6 +49,7 @@
      <Compile Include="Assets\scripts\camera.cs" />
      <Compile Include="Assets\scripts\footing.cs" />
      <Compile Include="Assets\scripts\kirby.cs" />
+     <Compile Include="Assets\scripts\moveFooting.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
