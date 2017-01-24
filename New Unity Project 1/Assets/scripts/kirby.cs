@@ -14,6 +14,7 @@ public class kirby : MonoBehaviour {
     Rigidbody2D rigid2D;                       // このスクリプトを充てるゲームオブジェクトの Rigidbody2Dコンポーネントを操作する。
     GameObject playerGroundCheck;
     Collider2D col2D;
+    Transform tf;
     float jumpForce = 500.0f;
     float walkForce = 15.0f;
 
@@ -26,6 +27,7 @@ public class kirby : MonoBehaviour {
         this.playerGroundCheck = GameObject.Find("playerGroundCheck");
         this.rigid2D = GetComponent<Rigidbody2D>();
         this.col2D = gameObject.GetComponentInChildren<BoxCollider2D>();
+        this.tf = GetComponent<Transform>();
 	}
 // =====================================================================
 	// Update is called once per frame
@@ -46,9 +48,15 @@ public class kirby : MonoBehaviour {
         if (absVelocityX < 5.0f)
         {
             if (Input.GetKey(KeyCode.RightArrow))
+            {
                 this.rigid2D.AddForce(transform.right * walkForce);
+                tf.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+            }
             if (Input.GetKey(KeyCode.LeftArrow))
+            {
                 this.rigid2D.AddForce(transform.right * -walkForce);
+                tf.localScale = new Vector3(-0.4f, 0.4f, 0.4f);
+            }
         }
         // 左方向にスピードオーバーしていたら
         else if (this.rigid2D.velocity.x < 0)
@@ -58,6 +66,7 @@ public class kirby : MonoBehaviour {
         else if (this.rigid2D.velocity.x > 0)
             this.rigid2D.AddForce(transform.right * -1.0f);
 
+        Debug.Log(tf.localRotation);
         
 	}
     // ------------------------------------------------------------------
