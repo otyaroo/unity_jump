@@ -17,6 +17,7 @@ public class kirby : MonoBehaviour {
     Transform tf;
     float jumpForce = 500.0f;
     float walkForce = 15.0f;
+    int jumpFrame = 0;
 
 // =====================================================================
 	// Use this for initialization
@@ -65,8 +66,6 @@ public class kirby : MonoBehaviour {
         // 右方向にスピードオーバーしていたら
         else if (this.rigid2D.velocity.x > 0)
             this.rigid2D.AddForce(transform.right * -1.0f);
-
-        Debug.Log(tf.localRotation);
         
 	}
     // ------------------------------------------------------------------
@@ -75,15 +74,31 @@ public class kirby : MonoBehaviour {
     // 壁にあたっている状態でもジャンプできないようになった。
     // Triggerモードになっているのが GroundCheckだけだからかも。
     // あとは、キャラクタのコライダーよりも GroundCheckの判定が小さいのも
+
+    // すごいジャンプをしてしまうのは、ジャンプする前に２回ジャンプの関数に入ってるから。
+    // 関数に入ったあと、0.1s間ジャンプできないようにする…のではどうだろう？
+    // ただ、ジャンプしてなくてもこれは動くんだよなぁ
     // ------------------------------------------------------------------
 
     void OnTriggerStay2D(Collider2D other)
     {
-        Debug.Log("床に触れてます");
-        if (Input.GetKey(KeyCode.X))
-            this.rigid2D.AddForce(transform.up * this.jumpForce);
-        if (Input.GetKey(KeyCode.Z))
-            this.rigid2D.AddForce(transform.up * this.jumpForce * 0.8f);
+        
+        Debug.Log("Enter OnTriggerStay method");
+        // ジャンプしてから 3フレームは再ジャンプ不可
+        if (jumpFrame < Time.frameCount)
+        {
+            if (Input.GetKey(KeyCode.X))
+            {
+                this.rigid2D.AddForce(transform.up * this.jumpForce);
+                jumpFrame = Time.frameCount + 3;
+            }
+
+            if (Input.GetKey(KeyCode.Z))
+            {
+                this.rigid2D.AddForce(transform.up * this.jumpForce * 0.8f);
+                jumpFrame = Time.frameCount + 3;
+            }
+        }
     }
    
 }
