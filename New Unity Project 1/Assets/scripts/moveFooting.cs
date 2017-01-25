@@ -18,35 +18,6 @@ public class moveFooting : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-        // -----------------------------------------------------------------
-        // 現状では、フレームごとに 0.1進む。
-        // ゲームを動かす環境によって、動く足場の速度が変わってしまう
-        // なので、フレームではなく時間で移動させる
-
-        // 例えば 1s で 1.0f進ませるという形。
-        // -------------------------------------------------------------------
-        /*
-        if (moveLengthRight > 0)
-        {
-            moveLengthRight -= 0.1f;
-            Vector2 v2 = transform.position;
-            v2.x += 0.1f;
-            transform.position = v2;
-        }
-
-        else if (moveLengthLeft > 0)
-        {
-            moveLengthLeft -= 0.1f;
-            Vector2 v2 = transform.position;
-            v2.x -= 0.1f;
-            transform.position = v2;
-        }
-        if(moveLengthLeft < 0)
-        {
-            moveLengthLeft = 4.0f;
-            moveLengthRight = 4.0f;
-        }*/
         // ---------------------------------------------------------------------------------------
         // 時間で動く足場ができました。
         // 4s で 4 動く足場
@@ -84,9 +55,13 @@ public class moveFooting : MonoBehaviour {
         // あれでそういうことしなくてもよいのかも。
 
 	}
-    void OnCollisionStay(Collision other)
+
+    void OnCollisionStay2D(Collision2D other)
     {
-        Debug.Log("OnCollisionStay が呼ばれました。");
-        other.transform.Translate(Vector3.right * Time.deltaTime * 2);
+        if (right)
+            other.transform.Translate(Vector3.right * Time.deltaTime * 2);
+        else
+            other.transform.Translate(Vector3.left * Time.deltaTime * 2);
+        
     }
 }
