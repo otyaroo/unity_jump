@@ -18,6 +18,15 @@ public class moveFooting : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        // -----------------------------------------------------------------
+        // 現状では、フレームごとに 0.1進む。
+        // ゲームを動かす環境によって、動く足場の速度が変わってしまう
+        // なので、フレームではなく時間で移動させる
+
+        // 例えば 1s で 1.0f進ませるという形。
+        // -------------------------------------------------------------------
+
         if (moveLengthRight > 0)
         {
             moveLengthRight -= 0.1f;
@@ -38,7 +47,7 @@ public class moveFooting : MonoBehaviour {
             moveLengthLeft = 4.0f;
             moveLengthRight = 4.0f;
         }
-        Debug.Log(moveLengthRight);
-        Debug.Log(moveLengthLeft);
+        
+        Debug.Log()
 	}
 }
