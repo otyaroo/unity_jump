@@ -18,6 +18,7 @@ public class kirby : MonoBehaviour {
     float jumpForce = 500.0f;
     float walkForce = 15.0f;
     int jumpFrame = 0;
+    float speedLimit;
 
 // =====================================================================
 	// Use this for initialization
@@ -37,7 +38,7 @@ public class kirby : MonoBehaviour {
 
         float absVelocityX = Mathf.Abs(this.rigid2D.velocity.x);
         float absVelocityY = Mathf.Abs(this.rigid2D.velocity.y);
-        
+
 
 
         // ------------------------------------------------------------------
@@ -46,7 +47,17 @@ public class kirby : MonoBehaviour {
         // 絶対値で速度オーバーしない限り、
         // 下の減速式には入らないはず。
         // ------------------------------------------------------------------
-        if (absVelocityX < 5.0f)
+
+        // ダッシュボタンを押していると最高速リミットが上がる
+        // -----------------------------------------------------------------
+
+        if (Input.GetKey(KeyCode.C))
+            speedLimit = 8.0f;
+        else
+            speedLimit = 5.0f;
+
+        // -----------------------------------------------------------------
+        if (absVelocityX < speedLimit)
         {
             if (Input.GetKey(KeyCode.RightArrow))
             {
@@ -61,11 +72,11 @@ public class kirby : MonoBehaviour {
         }
         // 左方向にスピードオーバーしていたら
         else if (this.rigid2D.velocity.x < 0)
-            this.rigid2D.AddForce(transform.right * 1.0f);
+            this.rigid2D.AddForce(transform.right * 5.0f);
 
         // 右方向にスピードオーバーしていたら
         else if (this.rigid2D.velocity.x > 0)
-            this.rigid2D.AddForce(transform.right * -1.0f);
+            this.rigid2D.AddForce(transform.right * -5.0f);
         
 	}
     // ------------------------------------------------------------------

@@ -44,7 +44,9 @@ public class enemy_01 : MonoBehaviour {
         if (coll.gameObject.tag == "Player")
         {
             Debug.Log("destroyが呼ばれました。");
-            Destroy(gameObject, 0.5f);
+            
+            Destroy(gameObject, 0.2f);
+            Destroy(GetComponent<enemy_01>());
         }
 
 
