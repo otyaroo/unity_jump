@@ -20,6 +20,10 @@ public class kirby : MonoBehaviour {
     int jumpFrame = 0;
     float speedLimit;
 
+    int playerHp = 100;
+    int playerMp = 50;
+
+
 // =====================================================================
 	// Use this for initialization
 // =====================================================================
