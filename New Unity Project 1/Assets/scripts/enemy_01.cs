@@ -38,4 +38,15 @@ public class enemy_01 : MonoBehaviour {
         else
             moveRight = true;
     }
+
+    void OnTriggerEnter2D(Collider2D coll)
+    {
+        if (coll.gameObject.tag == "Player")
+        {
+            Debug.Log("destroyが呼ばれました。");
+            Destroy(gameObject, 0.5f);
+        }
+
+
+    }
 }
