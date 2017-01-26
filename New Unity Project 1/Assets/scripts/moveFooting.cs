@@ -58,7 +58,7 @@ public class moveFooting : MonoBehaviour {
 
     void OnCollisionStay2D(Collision2D other)
     {
-        Debug.Log("足場, OnCollisionStay2D in");
+        //Debug.Log("足場, OnCollisionStay2D in");
         if (right)
             other.transform.Translate(Vector3.right * Time.deltaTime * 2);
         else

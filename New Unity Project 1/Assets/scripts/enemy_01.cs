@@ -31,8 +31,8 @@ public class enemy_01 : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log("enemy collision");
-        Debug.Log(moveRight);
+        //Debug.Log("enemy collision");
+        //Debug.Log(moveRight);
         if(moveRight)
             moveRight = false;
         else

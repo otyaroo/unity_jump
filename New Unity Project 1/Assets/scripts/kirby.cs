@@ -83,7 +83,7 @@ public class kirby : MonoBehaviour {
     void OnTriggerStay2D(Collider2D other)
     {
         
-        Debug.Log("Enter OnTriggerStay method");
+        //Debug.Log("Enter OnTriggerStay method");
         // ジャンプしてから 3フレームは再ジャンプ不可
         if (jumpFrame < Time.frameCount)
         {

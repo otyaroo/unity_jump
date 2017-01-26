@@ -5,11 +5,11 @@ using UnityEngine;
 public class treadPoint : MonoBehaviour {
     // プレイヤーのグラウンドチェックコリジョンが入ってきたら
     // 踏んだとみなす。
-    Collision2D playerGround;
+    //GameObject enemyParent;            // UnityEngine.GameObject
 
 	// Use this for initialization
 	void Start () {
-	    playerGround = GetComponent
+      //  enemyParent = GetComponentInParent(typeof(gameObject))as GameObject;
 	}
 	
 	// Update is called once per frame
@@ -17,9 +17,14 @@ public class treadPoint : MonoBehaviour {
 		
 	}
 
-    void OnCollisionEnter2D()
+    void OnTriggerEnter2D(Collider2D coll)
     {
+        if(coll.gameObject.tag == "Player")
+        {
+            Destroy(GameObject.Find("Enemy_01"));
+        }
 
+        Debug.Log("destroyが呼ばれました。");
     }
 
 }
