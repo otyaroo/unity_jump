@@ -15,4 +15,12 @@ public class gameDirector : MonoBehaviour {
 	void Update () {
 		
 	}
+
+
+    public void enemyStep()
+    {
+        Debug.Log("gameDirector enemyStep()が呼ばれました");
+        // 踏んだら、kirbyのスクリプト内の playerIsEnemyStep(); を呼び出す。
+        this.player.GetComponent<kirby>().playerIsEnemyStep();
+    }
 }

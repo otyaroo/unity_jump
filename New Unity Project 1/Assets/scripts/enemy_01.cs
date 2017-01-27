@@ -5,10 +5,12 @@ using UnityEngine;
 public class enemy_01 : MonoBehaviour {
     Transform tf;
     bool moveRight = true;
+    GameObject gameDirector;
 
 	// Use this for initialization
 	void Start () {
         tf = GetComponent<Transform>();
+        gameDirector = GameObject.Find("gameDirector");
 	}
 	
 	// Update is called once per frame
@@ -29,6 +31,11 @@ public class enemy_01 : MonoBehaviour {
         // 
 	}
 
+    
+    // ----------------------------------------------------------------------------------
+    // 何かにぶつかったら移動を反転する。
+    // アイテムにぶつかっても反転しないようにするコードを後で記述。
+    // ----------------------------------------------------------------------------------
     void OnCollisionEnter2D(Collision2D other)
     {
         //Debug.Log("enemy collision");
@@ -39,16 +46,20 @@ public class enemy_01 : MonoBehaviour {
             moveRight = true;
     }
 
+    // ----------------------------------------------------------------------------------
+    // プレイヤーに踏まれたら
+    // ----------------------------------------------------------------------------------
     void OnTriggerEnter2D(Collider2D coll)
     {
         if (coll.gameObject.tag == "Player")
         {
             Debug.Log("destroyが呼ばれました。");
-            
+            // プレイヤーに踏まれたことを
+            // ゲーム管理スクリプト  gameDirector へ伝える
+            gameDirector.GetComponent<gameDirector>().enemyStep();
+
             Destroy(gameObject, 0.2f);
             Destroy(GetComponent<enemy_01>());
         }
-
-
     }
 }
