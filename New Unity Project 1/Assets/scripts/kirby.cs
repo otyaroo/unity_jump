@@ -16,7 +16,7 @@ public class kirby : MonoBehaviour {
     GameObject playerGroundCheck;
     Collider2D col2D;
     Transform tf;
-    float jumpForce = 500.0f;
+    float jumpForce = 600.0f;
     float walkForce = 15.0f;
     int jumpFrame = 0;
     float speedLimit;
@@ -112,7 +112,7 @@ public class kirby : MonoBehaviour {
     public void playerIsEnemyStep()
     {
         Debug.Log("kirby playerIsEnemyStep関数がよばれました");
-        this.rigid2D.AddRelativeForce(transform.up * this.jumpForce);
+        this.rigid2D.AddRelativeForce(transform.up * this.jumpForce, ForceMode2D.Force);
     }
 
 
@@ -120,7 +120,7 @@ public class kirby : MonoBehaviour {
     {
         //Debug.Log("Enter OnTriggerStay method");
         // ジャンプしてから 3フレームは再ジャンプ不可
-        if (jumpFrame < Time.frameCount)
+        if (jumpFrame < Time.frameCount && other.gameObject.tag == "floor")
         {
             if (Input.GetKey(KeyCode.X))
             {

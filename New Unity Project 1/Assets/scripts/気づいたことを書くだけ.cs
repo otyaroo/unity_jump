@@ -58,3 +58,23 @@ public class 気づいたことを書くだけ : MonoBehaviour {
     }
 }
 */
+
+/*
+
+public void playerIsEnemyStep()
+    {
+        Debug.Log("kirby playerIsEnemyStep関数がよばれました");
+        this.rigid2D.AddRelativeForce(transform.up * this.jumpForce);
+    }
+
+
+
+    踏んだ後のジャンプの幅が不安定すぎる。
+    小ジャンプ、  何も押さないで踏んだら
+    大ジャンプ   ボタンを押した状態ならこれ
+    すごいジャンプ　バグでしかない。
+
+ */
+
+// 落下中の速度に AddForceをするから小ジャンプになってるんかな？
+// 
