@@ -21,7 +21,7 @@ public class kirby : MonoBehaviour {
     int jumpFrame = 0;
     float speedLimit;
 
-
+    public  bool gunMode = false;
     public int playerHp = 100;
     public int playerMp = 50;
 
@@ -83,7 +83,18 @@ public class kirby : MonoBehaviour {
         // 右方向にスピードオーバーしていたら
         else if (this.rigid2D.velocity.x > 0)
             this.rigid2D.AddForce(transform.right * -5.0f);
-        
+
+    // ------------------------------------------------------------------------
+    // 銃弾を出すよ
+    // ----------------------------------------------------------------
+        if (gunMode)
+        {
+            if (Input.GetKey(KeyCode.A))
+            {
+                
+                
+            }
+        }
 	}
     // ------------------------------------------------------------------
     // ジャンプの条件式
