@@ -58,8 +58,8 @@ public class enemy_01 : MonoBehaviour {
             // ゲーム管理スクリプト  gameDirector へ伝える
             gameDirector.GetComponent<gameDirector>().enemyStep();
 
-            //Destroy(gameObject, 0.2f);
-            //Destroy(GetComponent<enemy_01>());    //スクリプト排除
+            Destroy(gameObject, 0.2f);
+            Destroy(GetComponent<enemy_01>());    //スクリプト排除
         }
     }
 }

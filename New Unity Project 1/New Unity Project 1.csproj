@@ -77,8 +77,8 @@
   <ItemGroup>
     <Compile Include="Assets\scripts\camera.cs" />
     <Compile Include="Assets\scripts\enemy_01.cs" />
-    <Compile Include="Assets\scripts\exclamation_block.cs" />
-    <Compile Include="Assets\scripts\footing.cs" />
+    <Compile Include="Assets\scripts\exclamationBlock.cs" />
+    <Compile Include="Assets\scripts\exclamationBlock_hitPoint.cs" />
     <Compile Include="Assets\scripts\gameDirector.cs" />
     <Compile Include="Assets\scripts\hpBar.cs" />
     <Compile Include="Assets\scripts\kirby.cs" />

@@ -8,19 +8,18 @@ public class gameDirector : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        this.player = GameObject.Find("kirby");
+        player = GameObject.Find("kirby");
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
+    // ------------------------------------------------------------------
+    // 敵を踏んだ時に　敵側のスクリプトから呼ばれる関数
+    // プレイヤー側の挙動をここで制御する。
+    // -----------------------------------------------------------------
 
     public void enemyStep()
     {
-        Debug.Log("gameDirector enemyStep()が呼ばれました");
-        // 踏んだら、kirbyのスクリプト内の playerIsEnemyStep(); を呼び出す。
-        this.player.GetComponent<kirby>().playerIsEnemyStep();
+        // 敵を踏んだことを kirbyに伝える。
+        player.GetComponent<kirby>().playerIsEnemyStep();
     }
+
 }
