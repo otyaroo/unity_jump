@@ -14,7 +14,15 @@ public class kirby : MonoBehaviour {
 
     Rigidbody2D rigid2D;                       // このスクリプトを充てるゲームオブジェクトの Rigidbody2Dコンポーネントを操作する。
     GameObject playerGroundCheck;
+    // -------------------------------------------------------------------
+    // Audio Source用
+    // -------------------------------------------------------------------
+    GameObject jumpSE;                         // SE を配列保存。どうするんだ？
+    GameObject LandingSE;
+    bool landing = false;
     Collider2D col2D;
+
+
     Transform tf;
     float jumpForce = 600.0f;
     float walkForce = 15.0f;
@@ -36,6 +44,13 @@ public class kirby : MonoBehaviour {
         this.rigid2D = GetComponent<Rigidbody2D>();
         this.col2D = gameObject.GetComponentInChildren<BoxCollider2D>();
         this.tf = GetComponent<Transform>();
+        // ----------------------------------------------------------------------
+        // Audio Source 用
+        // ----------------------------------------------------------------------
+        this.jumpSE = GameObject.Find("kirbyJumpSE");
+        this.LandingSE = GameObject.Find("kirbyLandingSE");
+        
+        
 	}
 // =====================================================================
 	// Update is called once per frame
@@ -131,18 +146,31 @@ public class kirby : MonoBehaviour {
     {
         //Debug.Log("Enter OnTriggerStay method");
         // ジャンプしてから 3フレームは再ジャンプ不可
-        if (jumpFrame < Time.frameCount && other.gameObject.tag == "floor")
+        // ぴょーん、すたっ　SEを追加。
+        if (jumpFrame < Time.frameCount)
         {
-            if (Input.GetKey(KeyCode.X))
+            if (other.gameObject.tag == "floor" || other.gameObject.tag == "block")
             {
-                this.rigid2D.AddForce(transform.up * this.jumpForce);
-                jumpFrame = Time.frameCount + 3;
-            }
+                if (!landing)
+                {
+                    landing = true;
+                    LandingSE.GetComponent<AudioSource>().Play();
+                }
+                if (Input.GetKey(KeyCode.X))
+                {
+                    jumpSE.GetComponent<AudioSource>().Play();
+                    this.rigid2D.AddForce(transform.up * this.jumpForce);
+                    jumpFrame = Time.frameCount + 3;
+                    landing = false;
+                }
 
-            if (Input.GetKey(KeyCode.Z))
-            {
-                this.rigid2D.AddForce(transform.up * this.jumpForce * 0.8f);
-                jumpFrame = Time.frameCount + 3;
+                if (Input.GetKey(KeyCode.Z))
+                {
+                    jumpSE.GetComponent<AudioSource>().Play();
+                    this.rigid2D.AddForce(transform.up * this.jumpForce * 0.8f);
+                    jumpFrame = Time.frameCount + 3;
+                    landing = false;
+                }
             }
         }
     }
