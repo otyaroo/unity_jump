@@ -19,7 +19,7 @@ public class kirby : MonoBehaviour {
     // -------------------------------------------------------------------
     GameObject jumpSE;                         // SE を配列保存。どうするんだ？
     GameObject LandingSE;
-    bool landing = false;
+    //bool landing = false;                    // スタを使わないので一旦コメントアウト
     Collider2D col2D;
 
 
@@ -59,6 +59,7 @@ public class kirby : MonoBehaviour {
 
         float absVelocityX = Mathf.Abs(this.rigid2D.velocity.x);
         float absVelocityY = Mathf.Abs(this.rigid2D.velocity.y);
+        
 
 
 
@@ -151,17 +152,18 @@ public class kirby : MonoBehaviour {
         {
             if (other.gameObject.tag == "floor" || other.gameObject.tag == "block")
             {
-                if (!landing)
+                // スタ　はいったんなしで
+               /* if (!landing)
                 {
                     landing = true;
                     LandingSE.GetComponent<AudioSource>().Play();
-                }
+                }*/
                 if (Input.GetKey(KeyCode.X))
                 {
                     jumpSE.GetComponent<AudioSource>().Play();
                     this.rigid2D.AddForce(transform.up * this.jumpForce);
                     jumpFrame = Time.frameCount + 3;
-                    landing = false;
+                    //landing = false;
                 }
 
                 if (Input.GetKey(KeyCode.Z))
@@ -169,9 +171,10 @@ public class kirby : MonoBehaviour {
                     jumpSE.GetComponent<AudioSource>().Play();
                     this.rigid2D.AddForce(transform.up * this.jumpForce * 0.8f);
                     jumpFrame = Time.frameCount + 3;
-                    landing = false;
+                    //landing = false;
                 }
             }
+                
         }
     }
    
