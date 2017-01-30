@@ -82,6 +82,7 @@
     <Compile Include="Assets\scripts\exclamationBlock_hitPoint.cs" />
     <Compile Include="Assets\scripts\gameDirector.cs" />
     <Compile Include="Assets\scripts\hpBar.cs" />
+    <Compile Include="Assets\scripts\jumpjump\fallFooting.cs" />
     <Compile Include="Assets\scripts\kirby.cs" />
     <Compile Include="Assets\scripts\kirby_Gun.cs" />
     <Compile Include="Assets\scripts\moveFooting.cs" />
